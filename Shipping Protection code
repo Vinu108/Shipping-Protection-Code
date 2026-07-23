@@ -1,3 +1,14 @@
+{%- if cart != empty -%}
+  {% assign shipping_product = section.settings.shipping_product %}
+  {% assign protection_in_cart = false %}
+
+  {% for item in cart.items %}
+    {% if item.variant_id == shipping_product.variants.first.id %}
+      {% assign protection_in_cart = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
 <div class="protection-box">
     <div class="left">
       <span class="icon">
